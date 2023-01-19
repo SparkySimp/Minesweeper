@@ -54,7 +54,7 @@ namespace NTP_20230119_Minesweeper
                             .Pipe(d => decimal.ToInt32(d)),
                         y = (r.y - 1).Pipe(Math.Abs)
                             .Pipe(d => decimal.ToInt32(d))
-                    } select props[coord.x, coord.y]).ToArray(); // the miens are on these coordinates.
+                    } select props[coord.x, coord.y]).ToArray(); // the mines are on these coordinates.
                 }
             }
 

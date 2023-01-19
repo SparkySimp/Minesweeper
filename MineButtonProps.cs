@@ -161,7 +161,7 @@ namespace NTP_20230119_Minesweeper
                 if (this.IsMine)
                 {
                     self.BackColor = Color.Red;
-                    MessageBox.Show("Mayına bastınız!");
+
                 }
             };
 
