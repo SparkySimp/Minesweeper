@@ -38,23 +38,17 @@ namespace NTP_20230119_Minesweeper
                     refx = i;
                     refy = j;
 
-                    // Find neighbours of a mine.
-
-                    props[i, j].Neighbours = (from coord in from r in new[] { // Set of neighbor coordinates.
-                        new { x = i + 1, y = j },
-                        new { x = i - 1, y = j },
-                        new { x = i, y = j + 1 },
-                        new { x = i, y = j - 1 },
-                        new { x = i + 1, y = j + 1 },
-                        new { x = i + 1, y = j - 1 },
-                        new { x = i - 1, y = j + 1 },
-                        new { x = i - 1, y = j - 1 }
-                    } select new { // Calculate absolute value of x and y
-                        x = (r.x - 1).Pipe(Math.Abs)
-                            .Pipe(d => decimal.ToInt32(d)),
-                        y = (r.y - 1).Pipe(Math.Abs)
-                            .Pipe(d => decimal.ToInt32(d))
-                    } select props[coord.x, coord.y]).ToArray(); // the mines are on these coordinates.
+                    // Find neighbours of a prop. (suspected working on edges)
+                    for (int k = -1; k <= 1; k++)
+                    {
+                        for (int l = -1; l <= 1; l++)
+                        {
+                            if (refx + k >= 0 && refx + k < 9 && refy + l >= 0 && refy + l < 9)
+                            {
+                                props[i, j].Neighbours.Add(props[refx + k, refy + l]);
+                            }
+                        }
+                    }
                 }
             }
 

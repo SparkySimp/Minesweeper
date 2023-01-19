@@ -148,9 +148,9 @@ namespace NTP_20230119_Minesweeper
 
                 Button self = (Button)_sender;
 
+                // Display count of mines in the neighbourhood.
                 int closeMineCount = 0;
-
-                foreach (var nei in mNeighBours)
+                foreach (var nei in this.Neighbours)
                 {
                     if (nei?.IsMine ?? false)
                         closeMineCount++;
@@ -158,11 +158,19 @@ namespace NTP_20230119_Minesweeper
 
                 self.Text = closeMineCount.ToString();
 
+                // If the button is a mine, then we lose.
                 if (this.IsMine)
                 {
                     self.BackColor = Color.Red;
-
+                    self.Text = "X";
+                    self.Enabled = false;
                 }
+                else
+                {
+                    self.BackColor = Color.Green;
+                    self.Enabled = false;
+                }
+
             };
 
             return btn;
